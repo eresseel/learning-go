@@ -4,10 +4,15 @@ import (
 	"fmt"
 )
 
-func GetMessage() string {
-	return "Hello World"
+const englishHelloPrefix = "Hello, "
+
+func Hello(name string) string {
+	if name == "" {
+		name = "World"
+	}
+	return englishHelloPrefix + name
 }
 
 func main() {
-	fmt.Println(GetMessage())
+	fmt.Println(Hello("world"))
 }

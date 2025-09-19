@@ -3,12 +3,17 @@
 `go test -v` – részletesebb kimenet
 `go test -cover` – teszt lefedettség
 `golangci-lint` – statikus kódelemző
+`go test -v -cover -bench=. -benchmem`
 Testify – segédkönyvtár, ha bővebb assert-eket szeretnél: https://github.com/stretchr/testify
 
 ```bash
 hello-go
 go get github.com/stretchr/testify  //module download
 go get github.com/stretchr/testify/assert@v1.10.0
+go install github.com/kisielk/errcheck@latest
+export PATH=$PATH:$(go env GOPATH)/bin
+errcheck .
+
 go mod init example.com/hello
 go mod tidy                         // module cleaner
 go run main.go                      // build, run and remove code

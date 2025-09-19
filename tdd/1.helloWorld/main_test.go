@@ -4,24 +4,25 @@
 // függvényeket és típusokat is.
 package main
 
-import (
-	"testing" // origin
+import "testing"
 
-	"github.com/stretchr/testify/require"
-)
+func TestHello(t *testing.T) {
+	t.Run("saying hello to people", func(t *testing.T) {
+		got := Hello("Chris")
+		want := "Hello, Chris"
+		assertCorrectMessage(t, got, want)
+	})
 
-// origin
-// func TestGetMessage(t *testing.T) {
-// 	got := GetMessage()
-// 	want := "Hello World"
+	t.Run("empty string defaults to 'world'", func(t *testing.T) {
+		got := Hello("")
+		want := "Hello, World"
+		assertCorrectMessage(t, got, want)
+	})
+}
 
-// 	if got != want {
-// 		t.Fatalf("GetMessage() = %q, want %q", got, want)
-// 	}
-// }
-
-// with testify
-func TestGetMessage(t *testing.T) {
-	got := GetMessage()
-	require.Equal(t, "Hello World", got)
+func assertCorrectMessage(t testing.TB, got, want string) {
+	t.Helper()
+	if got != want {
+		t.Errorf("got %q want %q", got, want)
+	}
 }
